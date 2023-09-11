@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Videogame } = require('../../db');
+const { Videogame } = require('../../models/Videogame');
 const { Genre } = require('../../models/Genre');
 require('dotenv').config();
 
