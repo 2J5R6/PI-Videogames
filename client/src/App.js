@@ -6,9 +6,8 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style={{ backgroundImage: `url('https://wallpapercave.com/wp/wp3849268.jpg')`, backgroundSize: 'cover', height: '100vh' }}>
         <header className="App-header">
-          <img src='https://th.bing.com/th/id/OIG.C12sgOuFbKUXURk7uxCO?pid=ImgGn' className="App-logo" alt="logo" />
           <Routes /> {/* Asegúrate de renderizar tu componente de rutas aquí */}
         </header>
       </div>
@@ -17,3 +16,5 @@ function App() {
 }
 
 export default App;
+
+{/* <img src='https://th.bing.com/th/id/OIG.C12sgOuFbKUXURk7uxCO?pid=ImgGn' className="App-logo" alt="logo" /> */}
