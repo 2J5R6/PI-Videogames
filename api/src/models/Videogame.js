@@ -6,8 +6,9 @@ module.exports = (sequelize) => {
     // ID como identificador primario
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       primaryKey: true,
+      autoIncrement: true,
+      allowNull: false
     },
     // Nombre del videojuego
     name: {
@@ -28,7 +29,7 @@ module.exports = (sequelize) => {
     },
     // Plataformas en las que está disponible el videojuego
     parent_platforms: {
-      type: DataTypes.ARRAY(DataTypes.ENUM('Xbox', 'PlayStation', 'PC', 'Android', 'Nintendo')),
+      type: DataTypes.ARRAY(DataTypes.ENUM('Xbox', 'PlayStation', 'PC', 'Android', 'Nintendo', 'PS5')),
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -56,13 +57,6 @@ module.exports = (sequelize) => {
       defaultValue: true,
     },
   }, { timestamps: false });
-
-  // Hook para validar antes de guardar en la base de datos
-  Videogame.addHook('beforeValidate', (videogame, options) => {
-    if (!videogame.name || !videogame.description || !videogame.parent_platforms) {
-      throw new Error('Los campos nombre, descripción y plataformas son obligatorios');
-    }
-  });
 
   return Videogame;
 };
