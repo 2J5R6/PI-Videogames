@@ -13,7 +13,7 @@ function HomePage() {
   const videogames = useSelector((state) => state.videogames);
 
   // Obtener solo los últimos 18 videojuegos para mostrar
-  const displayedGames = videogames.slice(-18);
+  const displayedGames = videogames.slice(-15);
 
   // Llamar a la acción fetchVideogames cuando el componente se monta
   useEffect(() => {

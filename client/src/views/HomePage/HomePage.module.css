@@ -1,18 +1,17 @@
 .container {
   padding: 2%;
-  background-color: transparent; /* Hacer el fondo completamente transparente */
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurecer el fondo un poco */
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* Asegurarse de que el contenedor ocupe todo el ancho */
+  width: 100%;
 }
 
 .gameCardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* Distribuir las tarjetas uniformemente */
-  gap: 3%; /* Aumentar el espacio entre tarjetas */
-  max-width: 1400px; /* Aumentar el ancho máximo si es necesario */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid para un diseño uniforme */
+  gap: 2%; /* Espaciado uniforme */
+  max-width: 1400px;
   width: 100%;
 }
 
@@ -31,7 +30,7 @@
 
 @media (max-width: 768px) {
   .gameCardsContainer {
-    gap: 2%; /* Ajustar el espacio entre tarjetas para dispositivos móviles */
+    gap: 1.5%;
   }
 }
 

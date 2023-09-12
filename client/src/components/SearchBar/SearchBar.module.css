@@ -1,45 +1,58 @@
-/* SearchBar.module.css */
-
 .searchBarContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2c3e50;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia para mejorar la visibilidad */
+  border-radius: 25px; /* Bordes redondeados para el contenedor */
+  padding: 5px; /* Espaciado interno para el contenedor */
 }
 
 .searchInput {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
-  flex: 1;
-  background-color: #ecf0f1;
-  font-size: 16px;
+  padding: 12px 50px 12px 20px; /* Aumentar el padding derecho para el ícono de búsqueda */
+  border: 2px solid #f9a826; /* Borde dorado */
+  border-radius: 20px; /* Bordes más redondeados */
+  outline: none;
+  width: 85%; /* Aumentar el ancho */
+  font-size: 18px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo más claro para mejorar la visibilidad */
+  color: #1e1e1e; /* Texto oscuro */
 }
 
-.sourceSelect {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
-  background-color: #ecf0f1;
-  font-size: 16px;
+.searchInput:focus {
+  box-shadow: 0 0 15px rgba(249, 168, 38, 0.5); /* Sombra dorada al enfocar */
+  background-color: rgba(255, 255, 255, 1); /* Fondo sólido al enfocar */
 }
 
 .searchButton {
-  padding: 10px 20px;
+  position: absolute; 
+  right: 2%; /* Ajustar la posición del botón para que esté pegado al campo de entrada */
+  top: 50%;
+  transform: translateY(-50%);
   border: none;
-  border-radius: 5px;
-  background-color: #e74c3c;
-  color: white;
-  font-size: 16px;
+  background: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: #f9a826; /* Color dorado */
+  font-size: 24px; /* Ícono más grande */
+  transition: all 0.3s ease;
 }
 
 .searchButton:hover {
-  background-color: #c0392b;
+  color: #f5f5f5;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .searchBarContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchInput {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }
