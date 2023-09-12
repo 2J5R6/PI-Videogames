@@ -21,9 +21,10 @@ module.exports = (sequelize) => {
     // Descripción del videojuego
     description: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,  // Permitir valores nulos
       validate: {
-        notEmpty: true,
+        notEmpty: true,  // No permitir cadenas vacías
+        len: [0, 2000]   // Limitar la longitud de la descripción a 2000 caracteres
       },
     },
     // Plataformas en las que está disponible el videojuego
@@ -48,6 +49,14 @@ module.exports = (sequelize) => {
     userCreated: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
+    },
+    videoClip: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true,     // Verifica que sea una URL válida
+        len: [0, 500]    // Limitar la longitud de la URL a 500 caracteres
+      },
+      allowNull: true,
     },
     // URL de la imagen del videojuego
     image: {

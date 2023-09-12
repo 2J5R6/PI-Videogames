@@ -14,9 +14,11 @@ async function getAllVideogames(req, res, next) {
     if (!source || source === 'api') {
       const response = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`);
       const apiGames = response.data.results.map(game => {
-        // Proporcionar un valor predeterminado si la descripción es null o undefined
-        game.description = game.description || "Descripción no disponible";
-        return game;
+        return {
+          ...game,
+          description: game.description || "Descripción no disponible",
+          clip: game.clip || null // Añadir el clip del videojuego si está disponible, de lo contrario, null
+        };
       });
       allGames = [...allGames, ...apiGames];
 
@@ -26,10 +28,11 @@ async function getAllVideogames(req, res, next) {
           where: { name: game.name },
           defaults: {
             description: game.description,
-            platforms: game.platforms.map(p => p.platform.name), // Mantener las plataformas como un array
+            platforms: game.platforms.map(p => p.platform.name),
             image: game.background_image,
             rating: game.rating,
-            releaseDate: new Date(game.released)
+            releaseDate: new Date(game.released),
+            videoClip: game.clip // Guardar el clip del videojuego
           }
         });
 

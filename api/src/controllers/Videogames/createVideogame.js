@@ -1,7 +1,7 @@
 const { Videogame, Genre } = require('../../db');
 
 async function createVideogame(req, res, next) {
-  const { name, description, platforms, releaseDate, rating, developer, userCreated, image, genres } = req.body;
+  const { name, description, platforms, releaseDate, rating, developer, userCreated, image, videoClip, genres } = req.body;
 
   try {
     // Verificar si ya existe un videojuego con el mismo nombre
@@ -13,13 +13,14 @@ async function createVideogame(req, res, next) {
     // Crear el videojuego si no existe
     const newVideogame = await Videogame.create({
       name,
-      description,
+      description, // Descripción opcional
       platforms,
       releaseDate,
       rating,
       developer,
       userCreated,
-      image
+      image,
+      videoClip // Clip de video opcional
     });
 
     // Asociar géneros si se proporcionan
