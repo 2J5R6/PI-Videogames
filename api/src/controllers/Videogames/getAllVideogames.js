@@ -28,7 +28,8 @@ async function getAllVideogames(req, res, next) {
             description: game.description,
             platforms: game.platforms.map(p => p.platform.name), // Mantener las plataformas como un array
             image: game.background_image,
-            rating: game.rating
+            rating: game.rating,
+            releaseDate: new Date(game.released)
           }
         });
 
