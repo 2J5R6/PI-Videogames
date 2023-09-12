@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// Configurar axios para usar el base URL de tu servidor local con el prefijo /ENJOY
+axios.defaults.baseURL = 'http://localhost:3001/ENJOY';
+
 // Constantes de acción
 export const SET_VIDEOGAMES = 'SET_VIDEOGAMES';
 export const SET_LOADING = 'SET_LOADING';
@@ -22,24 +25,29 @@ export const setError = (error) => ({
 });
 
 // Acción thunk para obtener videojuegos basados en una consulta y una fuente (local o API)
-// Esta acción realiza una llamada a la API con la consulta y la fuente proporcionadas y luego
-// actualiza el estado de Redux con los datos obtenidos.
-export const fetchVideogames = (query, source = 'local') => {
+export const fetchVideogames = (query = '', source = 'local') => {
   return async (dispatch) => {
     dispatch(setLoading(true)); // Establecer el estado de carga en verdadero
+
     try {
-      // Determinar la URL basada en la fuente
-      const url = source === 'local' 
-        ? `/api/videogames/local?name=${query}`
-        : `/api/videogames?name=${query}`;
-      
+      // Construir la URL basada en la consulta
+      const url = query 
+        ? `/videogames/name?name=${query}`  // Ruta para buscar videojuegos por nombre en la base de datos local
+        : '/videogames';                    // Ruta para obtener todos los videojuegos de la base de datos local
+
       // Realizar la llamada a la API
       const response = await axios.get(url);
-      dispatch(setVideogames(response.data)); // Almacenar los videojuegos en el estado
-      dispatch(setLoading(false)); // Establecer el estado de carga en falso
+
+      // Almacenar los videojuegos en el estado de Redux
+      dispatch(setVideogames(response.data));
+
+      // Establecer el estado de carga en falso
+      dispatch(setLoading(false));
+
     } catch (error) {
-      dispatch(setError(error.message)); // Almacenar el mensaje de error en el estado
-      dispatch(setLoading(false)); // Establecer el estado de carga en falso
+      // En caso de error, almacenar el mensaje de error en el estado y establecer el estado de carga en falso
+      dispatch(setError(error.message));
+      dispatch(setLoading(false));
     }
   };
 };

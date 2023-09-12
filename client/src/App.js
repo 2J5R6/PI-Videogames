@@ -17,4 +17,4 @@ function App() {
 
 export default App;
 
-{/* <img src='https://th.bing.com/th/id/OIG.C12sgOuFbKUXURk7uxCO?pid=ImgGn' className="App-logo" alt="logo" /> */}
+{/* <img src='https://th.bing.com/th/id/OIG.C12sgOuFbKUXURk7uxCO?pid=ImgGn'  alt="logo" /> */}

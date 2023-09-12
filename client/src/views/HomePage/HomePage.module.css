@@ -1,6 +1,6 @@
 .container {
     padding: 2%;
-    background-color: rgba(0, 0, 0, 0.7); /* Añadir opacidad al fondo */
+    background-color: rgba(0, 0, 0, 1); /* Añadir opacidad al fondo */
   }
   
   .gameCardsContainer {
@@ -9,3 +9,20 @@
     gap: 2%;
   }
   
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loadingLogo {
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

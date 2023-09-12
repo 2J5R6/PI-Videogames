@@ -29,3 +29,10 @@
 .enterButton:hover {
     background-color: rgba(0, 0, 0, 0.9);
 }
+
+@media (max-width: 768px) {
+    .enterButton {
+        font-size: 1.5rem;
+        padding: 10px 20px;
+    }
+}

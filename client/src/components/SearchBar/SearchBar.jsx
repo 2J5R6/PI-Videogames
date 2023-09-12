@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchVideogames } from '../redux/actions';
+import { fetchVideogames } from '../../redux/actions';
 import styles from './SearchBar.module.css';
 
 const SearchBar = () => {
