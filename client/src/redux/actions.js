@@ -27,25 +27,18 @@ export const setError = (error) => ({
 // Acción thunk para obtener videojuegos basados en una consulta y una fuente (local o API)
 export const fetchVideogames = (query = '', source = 'local') => {
   return async (dispatch) => {
-    dispatch(setLoading(true)); // Establecer el estado de carga en verdadero
+    dispatch(setLoading(true));
 
     try {
-      // Construir la URL basada en la consulta
       const url = query 
-        ? `/videogames/name?name=${query}`  // Ruta para buscar videojuegos por nombre en la base de datos local
-        : '/videogames';                    // Ruta para obtener todos los videojuegos de la base de datos local
+        ? `/videogames/name?name=${query}`
+        : '/videogames';
 
-      // Realizar la llamada a la API
       const response = await axios.get(url);
-
-      // Almacenar los videojuegos en el estado de Redux
       dispatch(setVideogames(response.data));
-
-      // Establecer el estado de carga en falso
       dispatch(setLoading(false));
 
     } catch (error) {
-      // En caso de error, almacenar el mensaje de error en el estado y establecer el estado de carga en falso
       dispatch(setError(error.message));
       dispatch(setLoading(false));
     }
@@ -55,25 +48,29 @@ export const fetchVideogames = (query = '', source = 'local') => {
 // Acción thunk para obtener videojuegos filtrados
 export const fetchFilteredVideogames = (filterType, filterValue) => {
   return async (dispatch) => {
-    dispatch(setLoading(true)); // Establecer el estado de carga en verdadero
+    dispatch(setLoading(true));
 
     try {
       // Construir la URL basada en el tipo de filtro y su valor
-      const url = `/videogames/filter/${filterType}?value=${filterValue}`;
+      let url = `/videogames/filter/${filterType}`;
 
-      // Realizar la llamada a la API
+      // Manejar los rangos de fecha y rating
+      if (filterType === 'releaseDate') {
+        url += `?start=${filterValue.start}&end=${filterValue.end}`;
+      } else if (filterType === 'rating') {
+        url += `?start=${filterValue.start}&end=${filterValue.end}`;
+      } else {
+        url += `?value=${filterValue}`;
+      }
+
       const response = await axios.get(url);
-
-      // Almacenar los videojuegos en el estado de Redux
       dispatch(setVideogames(response.data));
-
-      // Establecer el estado de carga en falso
       dispatch(setLoading(false));
 
     } catch (error) {
-      // En caso de error, almacenar el mensaje de error en el estado y establecer el estado de carga en falso
       dispatch(setError(error.message));
       dispatch(setLoading(false));
     }
   };
 };
+

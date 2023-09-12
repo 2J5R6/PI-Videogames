@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'; // Importamos useState para manejar el estado local
 import { useDispatch } from 'react-redux';
 import { fetchFilteredVideogames } from '../../redux/actions';
 import styles from './Filters.module.css';
@@ -6,9 +6,22 @@ import styles from './Filters.module.css';
 function Filters() {
   const dispatch = useDispatch();
 
+  // Estado local para manejar los rangos de fecha y rating
+  const [dateRange, setDateRange] = useState({ start: '', end: '' });
+  const [ratingRange, setRatingRange] = useState({ start: 1, end: 5 });
+
   const handleFilterChange = (event) => {
     const filterType = event.target.name;
-    const filterValue = event.target.value;
+    let filterValue = event.target.value;
+
+    // Para los filtros de fecha y rating, enviar un rango
+    if (filterType === 'releaseDateStart' || filterType === 'releaseDateEnd') {
+      setDateRange(prevState => ({ ...prevState, [filterType]: filterValue }));
+      filterValue = dateRange;
+    } else if (filterType === 'ratingStart' || filterType === 'ratingEnd') {
+      setRatingRange(prevState => ({ ...prevState, [filterType]: filterValue }));
+      filterValue = ratingRange;
+    }
 
     dispatch(fetchFilteredVideogames(filterType, filterValue));
   };
@@ -17,7 +30,7 @@ function Filters() {
     <div className={styles.filtersContainer}>
       <label>Genre:</label>
       <select name="genre" onChange={handleFilterChange}>
-      <option value="Action">Action</option>
+        <option value="Action">Action</option>
         <option value="Indie">Indie</option>
         <option value="Adventure">Adventure</option>
         <option value="RPG">RPG</option>
@@ -40,33 +53,44 @@ function Filters() {
 
       <label>Platform:</label>
       <select name="platform" onChange={handleFilterChange}>
-      <option value="PC">PC</option>
-    <option value="PlayStation 5">PlayStation 5</option>
-    <option value="Xbox Series S/X">Xbox Series S/X</option>
-    <option value="PlayStation 4">PlayStation 4</option>
-    <option value="PlayStation 3">PlayStation 3</option>
-    <option value="Xbox 360">Xbox 360</option>
-    <option value="Xbox One">Xbox One</option>
-    <option value="Nintendo Switch">Nintendo Switch</option>
-    <option value="Linux">Linux</option>
-    <option value="macOS">macOS</option>
-    <option value="Android">Android</option>
-    <option value="iOS">iOS</option>
-    <option value="PS Vita">PS Vita</option>
-    <option value="Web">Web</option>
-        
+        <option value="PC">PC</option>
+        <option value="PlayStation 5">PlayStation 5</option>
+        <option value="Xbox Series S/X">Xbox Series S/X</option>
+        <option value="PlayStation 4">PlayStation 4</option>
+        <option value="PlayStation 3">PlayStation 3</option>
+        <option value="Xbox 360">Xbox 360</option>
+        <option value="Xbox One">Xbox One</option>
+        <option value="Nintendo Switch">Nintendo Switch</option>
+        <option value="Linux">Linux</option>
+        <option value="macOS">macOS</option>
+        <option value="Android">Android</option>
+        <option value="iOS">iOS</option>
+        <option value="PS Vita">PS Vita</option>
+        <option value="Web">Web</option>
       </select>
 
-      <label>Release Date:</label>
-      <input type="date" name="releaseDate" onChange={handleFilterChange} />
+      <label>Release Date Start:</label>
+      <input type="date" name="releaseDateStart" onChange={handleFilterChange} />
 
-      <label>Rating:</label>
-      <select name="rating" onChange={handleFilterChange}>
-        <option value="5">5 stars</option>
-        <option value="4">4 stars</option>
-        <option value="3">3 stars</option>
-        <option value="2">2 stars</option>
+      <label>Release Date End:</label>
+      <input type="date" name="releaseDateEnd" onChange={handleFilterChange} />
+
+      <label>Rating Start:</label>
+      <select name="ratingStart" onChange={handleFilterChange}>
         <option value="1">1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+      </select>
+
+      <label>Rating End:</label>
+      <select name="ratingEnd" onChange={handleFilterChange}>
+        <option value="1">1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
       </select>
 
       <label>Developer:</label>
