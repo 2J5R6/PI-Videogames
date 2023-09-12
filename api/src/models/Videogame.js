@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  // Definición del modelo Videogame
   const Videogame = sequelize.define('videogame', {
     // ID como identificador primario
     id: {
@@ -13,7 +12,7 @@ module.exports = (sequelize) => {
     // Nombre del videojuego
     name: {
       type: DataTypes.STRING,
-      unique: true, // Garantiza que el nombre del videojuego sea único
+      unique: true,
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -28,20 +27,9 @@ module.exports = (sequelize) => {
       },
     },
     // Plataformas en las que está disponible el videojuego
-    parent_platforms: {
-      type: DataTypes.ARRAY(DataTypes.ENUM('Xbox', 'PlayStation', 'PC', 'Android', 'Nintendo', 'PS5')),
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    // URL de la imagen del videojuego
-    image: {
-      type: DataTypes.STRING,
-      validate: {
-        isUrl: true, // Verifica que sea una URL válida
-      },
-      defaultValue: 'https://i.blogs.es/7796de/portada-xbox/840_560.jpeg' // URL predeterminada si no se proporciona una
+    platforms: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
     },
     // Fecha de lanzamiento del videojuego
     releaseDate: {
@@ -51,12 +39,32 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.FLOAT,
     },
+    // Desarrollador del videojuego
+    developer: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     // Indica si el videojuego fue creado por el usuario o proviene de la API
-    created: {
+    userCreated: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    // URL de la imagen del videojuego
+    image: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true, // Verifica que sea una URL válida
+      },
+      defaultValue: 'https://i.blogs.es/7796de/portada-xbox/840_560.jpeg' // URL predeterminada si no se proporciona una
+    },
   }, { timestamps: false });
+
+  // // Hook para validar antes de guardar en la base de datos
+  // Videogame.addHook('beforeValidate', (videogame, options) => {
+  //   if (!videogame.name || !videogame.description || !videogame.platforms) {
+  //     throw new Error('Los campos nombre, descripción y plataformas son obligatorios');
+  //   }
+  // });
 
   return Videogame;
 };

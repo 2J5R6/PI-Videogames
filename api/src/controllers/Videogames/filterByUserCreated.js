@@ -4,7 +4,7 @@ async function filterByUserCreated(req, res, next) {
   try {
     const userCreatedGames = await Videogame.findAll({
       where: {
-        created: true
+        userCreated: true
       }
     });
 

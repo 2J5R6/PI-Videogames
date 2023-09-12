@@ -8,7 +8,7 @@ async function filterByPlatform(req, res, next) {
   try {
     const gamesByPlatform = await Videogame.findAll({
       where: {
-        parent_platforms: {
+        platforms: {
           [Op.contains]: [platform]
         }
       }
