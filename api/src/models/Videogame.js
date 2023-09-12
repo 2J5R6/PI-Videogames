@@ -3,10 +3,10 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // Definición del modelo Videogame
   const Videogame = sequelize.define('videogame', {
-    // UUID como identificador primario para garantizar la unicidad
+    // ID como identificador primario
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
     // Nombre del videojuego

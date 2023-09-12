@@ -1,4 +1,4 @@
-const { Videogame } = require('../../models/Videogame');
+const { Videogame} = require('../../db');
 
 async function createVideogame(req, res, next) {
   const videogameData = req.body;

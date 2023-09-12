@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
-const { Videogame } = require('../../models/Videogame');
-const { Genre } = require('../../models/Genre');
+const { Videogame, Genre } = require('../../db');
+
 const { API_KEY } = process.env;
 
 async function getAllVideogames(req, res, next) {

@@ -1,6 +1,5 @@
 const axios = require('axios');
-const { Videogame } = require('../../models/Videogame');
-const { Genre } = require('../../models/Genre');
+const { Videogame, Genre } = require('../../db');
 require('dotenv').config();
 
 const { API_KEY } = process.env;
