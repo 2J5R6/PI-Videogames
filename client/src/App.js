@@ -1,24 +1,18 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes'; // Asegúrate de importar tu componente de rutas
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <img src='https://th.bing.com/th/id/OIG.C12sgOuFbKUXURk7uxCO?pid=ImgGn' className="App-logo" alt="logo" />
+          <Routes /> {/* Asegúrate de renderizar tu componente de rutas aquí */}
+        </header>
+      </div>
+    </BrowserRouter>
   );
 }
 
