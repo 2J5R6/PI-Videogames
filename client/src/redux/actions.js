@@ -21,14 +21,20 @@ export const setError = (error) => ({
   payload: error,
 });
 
-// Acción thunk para obtener videojuegos
-// Esta acción realiza una llamada a la API para obtener videojuegos y luego
+// Acción thunk para obtener videojuegos basados en una consulta y una fuente (local o API)
+// Esta acción realiza una llamada a la API con la consulta y la fuente proporcionadas y luego
 // actualiza el estado de Redux con los datos obtenidos.
-export const fetchVideogames = () => {
+export const fetchVideogames = (query, source = 'local') => {
   return async (dispatch) => {
     dispatch(setLoading(true)); // Establecer el estado de carga en verdadero
     try {
-      const response = await axios.get('/api/videogames'); // Realizar la llamada a la API
+      // Determinar la URL basada en la fuente
+      const url = source === 'local' 
+        ? `/api/videogames/local?name=${query}`
+        : `/api/videogames?name=${query}`;
+      
+      // Realizar la llamada a la API
+      const response = await axios.get(url);
       dispatch(setVideogames(response.data)); // Almacenar los videojuegos en el estado
       dispatch(setLoading(false)); // Establecer el estado de carga en falso
     } catch (error) {

@@ -1,16 +1,17 @@
-// src/components/GameCard/GameCard.jsx
 
 import React from 'react';
-import styles from './GameCard.module.css'; // Asegúrate de tener este archivo CSS
+import styles from './GameCard.module.css';
 
-function GameCard({ game }) {
+const GameCard = ({ game }) => {
   return (
     <div className={styles.card}>
-      <img src={game.image} alt={game.name} />
-      <h3>{game.name}</h3>
-      <p>{game.genres.join(', ')}</p>
+      <img src={game.image} alt={game.name} className={styles.cardImage} />
+      <div className={styles.cardContent}>
+        <h2 className={styles.cardTitle}>{game.name}</h2>
+        <p className={styles.cardDescription}>{game.description}</p>
+      </div>
     </div>
   );
-}
+};
 
 export default GameCard;

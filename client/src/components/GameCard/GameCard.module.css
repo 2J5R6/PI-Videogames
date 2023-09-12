@@ -1,0 +1,40 @@
+/* GameCard.module.css */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .cardContent {
+    padding: 15px;
+  }
+  
+  .cardTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .cardDescription {
+    font-size: 14px;
+    color: #777;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  
