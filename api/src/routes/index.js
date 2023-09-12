@@ -14,8 +14,8 @@ const {
   
   // Rutas para videogames
   router.get('/videogames', getAllVideogames);
-  router.get('/videogames/:idVideogame', getVideogameById);
   router.get('/videogames/name', getVideogamesByName);
+  router.get('/videogames/:idVideogame', getVideogameById);
   router.post('/videogames', createVideogame);
   
   // Rutas para genres
