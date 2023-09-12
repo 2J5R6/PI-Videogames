@@ -16,7 +16,7 @@ const server = require('./src/app.js');
 const { conn, Videogame, Genre } = require('./src/db.js');
 
 // Syncing all the models of DB at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: false}).then(() => {
   server.listen(3001, () => {
     console.log('Listening at 3001'); // eslint-disable-line no-console
   });
