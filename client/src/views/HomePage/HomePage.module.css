@@ -1,10 +1,11 @@
 .container {
-    padding: 20px;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.7); /* Añadir opacidad al fondo */
   }
   
   .gameCardsContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 2%;
   }
   
