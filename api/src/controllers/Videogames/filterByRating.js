@@ -13,6 +13,10 @@ async function filterByRating(req, res, next) {
       }
     });
 
+    if (gamesByRating.length === 0) {
+      return res.status(404).json({ message: `No games found for rating between ${minRating} and ${maxRating}` });
+    }
+
     res.json(gamesByRating);
   } catch (err) {
     next(err);

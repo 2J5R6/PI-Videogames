@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST, PORT } = process.env;
 
+
 // Importación de modelos
 const VideogameModel = require('./models/Videogame');
 const GenreModel = require('./models/Genre');

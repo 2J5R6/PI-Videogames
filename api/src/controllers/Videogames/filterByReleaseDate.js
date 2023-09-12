@@ -3,6 +3,10 @@ const { Op } = require('sequelize');
 
 async function filterByReleaseDate(req, res, next) {
   const { startDate, endDate } = req.query;
+  
+  if (isNaN(new Date(startDate)) || isNaN(new Date(endDate))) {
+    return res.status(400).json({ message: 'Invalid date format' });
+  }
 
   try {
     const gamesByDate = await Videogame.findAll({
