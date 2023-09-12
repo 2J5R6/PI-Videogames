@@ -51,3 +51,29 @@ export const fetchVideogames = (query = '', source = 'local') => {
     }
   };
 };
+
+// Acción thunk para obtener videojuegos filtrados
+export const fetchFilteredVideogames = (filterType, filterValue) => {
+  return async (dispatch) => {
+    dispatch(setLoading(true)); // Establecer el estado de carga en verdadero
+
+    try {
+      // Construir la URL basada en el tipo de filtro y su valor
+      const url = `/videogames/filter/${filterType}?value=${filterValue}`;
+
+      // Realizar la llamada a la API
+      const response = await axios.get(url);
+
+      // Almacenar los videojuegos en el estado de Redux
+      dispatch(setVideogames(response.data));
+
+      // Establecer el estado de carga en falso
+      dispatch(setLoading(false));
+
+    } catch (error) {
+      // En caso de error, almacenar el mensaje de error en el estado y establecer el estado de carga en falso
+      dispatch(setError(error.message));
+      dispatch(setLoading(false));
+    }
+  };
+};
